@@ -5,7 +5,7 @@ Tags: image, video, DAM, optimization, CDN, Cloudinary, beta
 Requires at least: 5.0  
 Tested up to: 5.7.2  
 Requires PHP: 5.6  
-Stable tag: 0.2.0  
+Stable tag: 0.2.1  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -30,8 +30,14 @@ Simply deactivate the Cloudinary Beta plugin.
 
 ## Changelog
 
+### 0.2.1
+
+* Support nested beta features;
+
 ### 0.2.0
+
 * Abstract beta features;
 
 ### 0.1.0
+
 * Beta for delivery systems;
