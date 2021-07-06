@@ -160,9 +160,14 @@ class Beta_Enabler {
 		);
 
 		foreach ( $this->features as $feature => $data ) {
+			$parent = 'cloudinary-beta';
+			if ( ! empty( $data['deps'] ) ) {
+				$parent = "cloudinary-beta-{$data['deps'][0]}";
+			}
+
 			$options[ $feature ] = array(
 				'id'     => "cloudinary-beta-{$feature}",
-				'parent' => 'cloudinary-beta',
+				'parent' => $parent,
 				'title'  => sprintf(
 					__( 'Disabled %s', 'cloudinary-beta' ),
 					$data['name']
