@@ -73,7 +73,7 @@ class Beta_Enabler {
 	}
 
 	/**
-	 *
+	 * Init the plugin updater.
 	 */
 	public function init_updater() {
 		require_once 'class-updater.php';
@@ -106,6 +106,9 @@ class Beta_Enabler {
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 	}
 
+	/**
+	 * Incompatible Cloudinary plugin notice.
+	 */
 	public function enable_cloudinary_notice_min_version() {
 		$class   = 'notice notice-error';
 		$message = __( 'The Cloudinary Beta Enabler plugin is not compatible with the installed Cloudinary plugin. Please upgrade first the base plugin and try again. The Beta Enabler plugin is deactivated.', 'cloudinary-beta' );
