@@ -7,7 +7,7 @@
  * Author URI:      https://cloudinary.com/
  * Text Domain:     cloudinary-beta
  * Domain Path:     /languages
- * Version:         0.2.0
+ * Version:         0.2.1
  *
  * @package         Cloudinary_Beta
  */
