@@ -31,6 +31,7 @@ Simply deactivate the Cloudinary Beta plugin.
 
 = 0.2.1 =
 * Support nested beta features;
+* Add notice when beta features are inactive;
 
 = 0.2.0 =
 * Abstract beta features;

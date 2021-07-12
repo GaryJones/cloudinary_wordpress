@@ -70,6 +70,7 @@ class Beta_Enabler {
 		add_action( 'wp_head', array( $this, 'styles' ) );
 		add_action( 'init', array( $this, 'maybe_toggle_feature' ), 5 );
 		add_action( 'init', array( $this, 'setup_properties' ) );
+		add_action( 'admin_notices', array( $this, 'maybe_inactive_features_notice' ) );
 	}
 
 	/**
@@ -109,11 +110,43 @@ class Beta_Enabler {
 	/**
 	 * Incompatible Cloudinary plugin notice.
 	 */
-	public function enable_cloudinary_notice_min_version() {
+	public function enable_cloudinary_notice_min_version_notice() {
 		$class   = 'notice notice-error';
 		$message = __( 'The Cloudinary Beta Enabler plugin is not compatible with the installed Cloudinary plugin. Please upgrade first the base plugin and try again. The Beta Enabler plugin is deactivated.', 'cloudinary-beta' );
 
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
+	}
+
+	/**
+	 * Inactive Beta features notice.
+	 */
+	public function maybe_inactive_features_notice() {
+		if ( empty( $this->features ) ) {
+			return;
+		}
+
+		$inactive = array();
+		foreach ( $this->features as $feature => $data ) {
+			if ( ! $this->is_feature_enabled( $feature ) ) {
+				$inactive[] = $data['name'];
+			}
+		}
+
+		if ( ! empty( $inactive ) ) {
+			$class   = 'notice notice-info';
+			$message = __( 'The following Cloudinary Beta features are inactive: %s.', 'cloudinary-beta' );
+
+			printf(
+				'<div class="%1$s"><p>%2$s</p></div>',
+				esc_attr( $class ),
+				esc_html(
+					sprintf(
+						$message,
+						implode( ' ', $inactive )
+					)
+				)
+			);
+		}
 	}
 
 	/**
