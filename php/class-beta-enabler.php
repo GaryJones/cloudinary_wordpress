@@ -50,7 +50,7 @@ class Beta_Enabler {
 		$plugin = get_plugin_instance();
 
 		if ( 1 > version_compare( $plugin->version, '2.7.3' ) ) {
-			add_action( 'admin_notices', array( $this, 'enable_cloudinary_notice_min_version' ) );
+			add_action( 'admin_notices', array( $this, 'enable_cloudinary_notice_min_version_notice' ) );
 			deactivate_plugins( plugin_basename( CLDN_BETA ) );
 
 			return;
@@ -169,7 +169,7 @@ class Beta_Enabler {
 				'id'     => "cloudinary-beta-{$feature}",
 				'parent' => $parent,
 				'title'  => sprintf(
-					__( 'Disabled %s', 'cloudinary-beta' ),
+					__( '%s [Inactive]', 'cloudinary-beta' ),
 					$data['name']
 				),
 				'href'   => "?cloudinary-beta-{$feature}=on",
@@ -185,7 +185,7 @@ class Beta_Enabler {
 			$enabled = $this->is_feature_enabled( $feature );
 			if ( $enabled ) {
 				$options[ $feature ]['title'] = sprintf(
-					__( 'Active %s', 'cloudinary-beta' ),
+					__( '%s [Active]', 'cloudinary-beta' ),
 					$data['name']
 				);
 				$options[ $feature ]['href']  = "?cloudinary-beta-{$feature}=off";
